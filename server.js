@@ -28,6 +28,7 @@ const server = new ApolloServer({
         return { user: null };
       }
     }
+    return { user: null };
   }
 });
 
