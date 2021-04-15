@@ -22,10 +22,10 @@ const server = new ApolloServer({
     if (authHeader) {
       const token = authHeader.split(' ')[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      if (decoded.exp < Date.now()) {
-        return { user: decoded };
-      } else {
+      if (decoded.exp > Date.now()) {
         return { user: null };
+      } else {
+        return { user: decoded };
       }
     }
     return { user: null };
